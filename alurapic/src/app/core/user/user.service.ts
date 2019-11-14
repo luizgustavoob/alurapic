@@ -12,11 +12,7 @@ export class UserService {
     private userSubject = new BehaviorSubject<User>(null); // armazena a emissão até que algum consumidor apareça
 
     constructor(private tokenService: TokenService) {
-        this.hasToken() && this.decodeAndNotify();
-    }
-
-    hasToken(): boolean {
-        return this.tokenService.hasToken();
+        this.tokenService.hasToken() && this.decodeAndNotify();
     }
 
     setToken(token: string) {
@@ -24,21 +20,18 @@ export class UserService {
         this.decodeAndNotify();
     }
 
-    getToken(): string {
-        return this.tokenService.getToken();
-    }
-
-    removeToken() {
-        this.tokenService.removeToken();
-    }
-
     getUser() {
         return this.userSubject.asObservable();
     }
 
     private decodeAndNotify() {
-        const token = this.getToken();
+        const token = this.tokenService.getToken();
         const user = jwt_decode(token) as User;
         this.userSubject.next(user);
+    }
+
+    logout() {
+        this.tokenService.removeToken();
+        this.userSubject.next(null);
     }
 }
