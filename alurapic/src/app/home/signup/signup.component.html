@@ -2,7 +2,7 @@
 
 <form [formGroup]="signupForm" class="form mt-4" (submit)="signup()" >
     <div class="form-group">
-        <input formControlName="email" placeholder="email" class="form-control" autofocus >
+        <input #emailInput formControlName="email" placeholder="email" class="form-control" autofocus >
         <app-message 
             *ngIf="signupForm.get('email').errors?.required"
             text="E-mail is required">
@@ -15,7 +15,7 @@
 
     <div class="form-group">
         <input formControlName="fullName" placeholder="full name" class="form-control">
-    <app-message 
+        <app-message 
             *ngIf="signupForm.get('fullName').errors?.required"
             text="Full name is required">
         </app-message>

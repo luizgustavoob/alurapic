@@ -1,8 +1,8 @@
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
-import { Observable } from "rxjs";
-import { Photo } from "../photo";
-import { Injectable } from "@angular/core";
-import { PhotoService } from "../photo.service";
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Photo } from '../photo';
+import { Injectable } from '@angular/core';
+import { PhotoService } from '../photo.service';
 
 @Injectable({
   providedIn: 'root'
