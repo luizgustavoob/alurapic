@@ -7,6 +7,8 @@ import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
 import { MessageModule } from '../shared/components/message/message.module';
 import { HomeComponent } from './home.component';
+import { HomeRoutingModule } from './home.routing.module';
+import { SignUpService } from './signup/signup.service';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,11 @@ import { HomeComponent } from './home.component';
         CommonModule,
         RouterModule,
         ReactiveFormsModule,
-        MessageModule
+        MessageModule,
+        HomeRoutingModule
+    ], 
+    providers: [
+        SignUpService
     ]
 })
 export class HomeModule { }
