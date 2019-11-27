@@ -28,4 +28,8 @@ export class PhotoService {
       formData.append('imageFile', file);
       return this.http.post(API_URL + 'photos/upload', formData);
     }
+
+    findById(id: string) {
+      return this.http.get<Photo>(API_URL + 'photos/' + id);
+    }
 }
