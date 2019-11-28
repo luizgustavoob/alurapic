@@ -7,7 +7,8 @@ import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-photo-comment',
-    templateUrl: './photo-comment.component.html'
+    templateUrl: './photo-comment.component.html',
+    styleUrls: ['./photo-comment.component.css']
 })
 export class PhotoCommentComponent implements OnInit {
     
@@ -29,6 +30,6 @@ export class PhotoCommentComponent implements OnInit {
         const comment = this.commentForm.get('comment').value as string;
         this.comments$ = this.photoService.addComment(this.photoId, comment)
             .pipe( switchMap( () => this.photoService.getComments(this.photoId) ) )
-            .pipe( tap( () => this.commentForm.reset ) );
+            .pipe( tap( () => this.commentForm.reset() ) );
     }
 }
