@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Photo } from '../photo';
+import { Photo } from '../photo/photo';
 import { PhotoService } from '../photo.service';
 
 @Component({
