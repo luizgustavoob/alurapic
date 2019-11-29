@@ -41,4 +41,8 @@ export class PhotoService {
     addComment(id: number, comment: string){
       return this.http.post( API_URL + 'photos/' + id + '/comments', { commentText: comment } );
     }
+
+    removePhoto(id: number) {
+      return this.http.delete( API_URL + 'photos/' + id);
+    }
 }
