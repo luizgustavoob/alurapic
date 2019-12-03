@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PhotoService } from '../../photo.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PhotoComment } from '../../photo/photo-comment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { switchMap, tap } from 'rxjs/operators';
-import { PhotoCommentService } from './photo-comment.service';
+import { PhotoCommentPublisher } from './photo-comment.publisher';
 
 @Component({
     selector: 'app-photo-comment',
@@ -20,7 +20,7 @@ export class PhotoCommentComponent implements OnInit {
     
     constructor(private photoService: PhotoService, 
                 private formBuilder: FormBuilder,
-                private commentService: PhotoCommentService){}
+                private commentPublisher: PhotoCommentPublisher){}
 
     ngOnInit(): void {
         this.comments$ = this.photoService.getComments(this.photoId);
@@ -34,7 +34,7 @@ export class PhotoCommentComponent implements OnInit {
         this.comments$ = this.photoService.addComment(this.photoId, comment)
             .pipe( switchMap( () => this.photoService.getComments(this.photoId) ) )
             .pipe( tap( () => {
-                this.commentService.next();
+                this.commentPublisher.newComment();
                 this.commentForm.reset();
             }));
     }

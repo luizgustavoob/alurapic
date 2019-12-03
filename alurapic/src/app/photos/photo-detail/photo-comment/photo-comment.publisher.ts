@@ -4,11 +4,11 @@ import { Subject } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class PhotoCommentService {
+export class PhotoCommentPublisher {
 
     newCommentSubject: Subject<boolean> = new Subject<boolean>();
     
-    next() {
+    newComment() {
         this.newCommentSubject.next(true);
     }
 
